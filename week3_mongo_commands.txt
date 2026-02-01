@@ -1,0 +1,155 @@
+// Select or create the database
+use student_success
+
+// Clear existing data (safe for local testing)
+db.students.deleteMany({})
+
+// Insert sample student documents
+db.students.insertMany([
+  {
+    _id: "S1001",
+    name: "Afi Felegnan",
+    email: "afi.felegnan@university.edu",
+    program: "IT",
+    advisingNotes: [
+      {
+        date: ISODate("2025-10-01T00:00:00Z"),
+        advisor: "Dr. Smith",
+        category: "academic plan",
+        text: "Reviewed degree plan and mapped next term courses."
+      },
+      {
+        date: ISODate("2025-10-20T00:00:00Z"),
+        advisor: "Dr. Smith",
+        category: "well-being",
+        text: "Discussed balancing coursework and stress management resources."
+      }
+    ],
+    supportVisits: [
+      {
+        date: ISODate("2025-10-05T00:00:00Z"),
+        service: "Tutoring",
+        description: "SQL joins and filters."
+      },
+      {
+        date: ISODate("2025-10-12T00:00:00Z"),
+        service: "Workshop",
+        description: "Time management workshop."
+      }
+    ]
+  },
+  {
+    _id: "S1002",
+    name: "Maria Lopez",
+    email: "maria.lopez@university.edu",
+    program: "Business",
+    advisingNotes: [
+      {
+        date: ISODate("2025-10-03T00:00:00Z"),
+        advisor: "Prof. Allen",
+        category: "academic plan",
+        text: "Planned course sequence for spring term."
+      }
+    ],
+    supportVisits: [
+      {
+        date: ISODate("2025-10-04T00:00:00Z"),
+        service: "Writing Center",
+        description: "Revised report structure and clarity."
+      },
+      {
+        date: ISODate("2025-10-08T00:00:00Z"),
+        service: "Tutoring",
+        description: "Accounting practice problems."
+      },
+      {
+        date: ISODate("2025-10-15T00:00:00Z"),
+        service: "Tutoring",
+        description: "Exam prep session."
+      }
+    ]
+  },
+  {
+    _id: "S1003",
+    name: "James Carter",
+    email: "james.carter@university.edu",
+    program: "English",
+    advisingNotes: [
+      {
+        date: ISODate("2025-09-28T00:00:00Z"),
+        advisor: "Dr. Nguyen",
+        category: "academic plan",
+        text: "Discussed improving writing portfolio."
+      }
+    ],
+    supportVisits: [
+      {
+        date: ISODate("2025-10-02T00:00:00Z"),
+        service: "Writing Center",
+        description: "Thesis statement and paragraph flow."
+      }
+    ]
+  },
+  {
+    _id: "S1004",
+    name: "Naomi Kim",
+    email: "naomi.kim@university.edu",
+    program: "Nursing",
+    advisingNotes: [
+      {
+        date: ISODate("2025-10-06T00:00:00Z"),
+        advisor: "Dr. Patel",
+        category: "well-being",
+        text: "Reviewed workload and support resources."
+      },
+      {
+        date: ISODate("2025-10-22T00:00:00Z"),
+        advisor: "Dr. Patel",
+        category: "academic plan",
+        text: "Confirmed clinical schedule and study plan."
+      }
+    ],
+    supportVisits: [
+      {
+        date: ISODate("2025-10-07T00:00:00Z"),
+        service: "Workshop",
+        description: "Test-taking strategies."
+      },
+      {
+        date: ISODate("2025-10-18T00:00:00Z"),
+        service: "Tutoring",
+        description: "Pharmacology review."
+      }
+    ]
+  },
+  {
+    _id: "S1005",
+    name: "Daniel Okafor",
+    email: "daniel.okafor@university.edu",
+    program: "CS",
+    advisingNotes: [
+      {
+        date: ISODate("2025-10-09T00:00:00Z"),
+        advisor: "Prof. Rivera",
+        category: "academic plan",
+        text: "Planned programming course sequence and prerequisites."
+      }
+    ],
+    supportVisits: [
+      {
+        date: ISODate("2025-10-10T00:00:00Z"),
+        service: "Tutoring",
+        description: "Data structures practice."
+      },
+      {
+        date: ISODate("2025-10-16T00:00:00Z"),
+        service: "Tutoring",
+        description: "Recursion and debugging."
+      }
+    ]
+  }
+])
+
+// Sanity checks
+db.students.countDocuments()
+db.students.find({}, { _id: 1, name: 1, program: 1 }).pretty()

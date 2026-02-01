@@ -1,0 +1,18 @@
+ // Query 1: Student summary (profile + basic info)
+db.students.find(
+  { _id: "S1001" },
+  { _id: 1, name: 1, program: 1, advisingNotes: 1 }
+).pretty()
+
+// Query 2: Support visits for a specific student
+db.students.find(
+  { _id: "S1002" },
+  { supportVisits: 1 }
+).pretty()
+
+// Query 3: Students with 3 or more support visits
+db.students.find({
+  $expr: { $gte: [ { $size: "$supportVisits" }, 3 ] }
+},
+{ _id: 1, name: 1 }
+).pretty()
